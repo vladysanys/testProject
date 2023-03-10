@@ -18,7 +18,6 @@ for (let i = 0; questionNumberArray.length < questions.length; i++) {
     questionNumberArray.push(number);
   }
 }
-firstSection.classList.add("close");
 let sum = 0;
 let trueAnwers = 0;
 let counterRate = 0;
