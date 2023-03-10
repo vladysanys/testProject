@@ -18,9 +18,11 @@ firstSection.classList.add("close");
 let sum = 0;
 let trueAnwers = 0;
 let counterRate = 0;
+let value = false;
 let rate = Math.floor(100 / questions.length);
 const finnaly = () => {
   finnalyBox.classList.toggle("close");
+  value = true;
 };
 startButton.addEventListener("click", (event) => {
   const { target } = event;
@@ -34,6 +36,7 @@ startButton.addEventListener("click", (event) => {
       questions[questionNumberArray[sum]].answer[index];
     if (target.textContent == questions[questionNumberArray[sum]].trueAnswer) {
       trueAnwers++;
+      console.log(trueAnwers);
     }
   });
 });
@@ -41,13 +44,6 @@ buttonsBox.addEventListener("click", (event) => {
   const { target } = event;
   if (sum == questions.length - 1) {
     finnaly();
-    rate = trueAnwers *= rate;
-    setInterval(() => {
-      counter.textContent = 0 + counterRate + "%";
-      if (counterRate !== rate && trueAnwers !== 0) {
-      counterRate++;
-      }
-    }, 50);
   } else {
     sum++;
     question.textContent = questions[questionNumberArray[sum]].name;
@@ -59,13 +55,23 @@ buttonsBox.addEventListener("click", (event) => {
   }
   if (target.textContent == questions[questionNumberArray[sum]].trueAnswer) {
     trueAnwers++;
-    console.log(true)
-    console.log(target)
+    console.log(trueAnwers);
+    console.log(target);
   } else {
-    console.log(false)
-    console.log(target.textContent)
+    console.log(false);
+    console.log(target.textContent);
   }
   // if(target.textName == questions[questionNumberArray[sum]]){
   //   console.log(1)
   // }
+
+  if (value) {
+    rate = trueAnwers *= rate;
+    setInterval(() => {
+      counter.textContent = 0 + counterRate + "%";
+      if (counterRate !== rate && trueAnwers !== 0) {
+        counterRate++;
+      }
+    }, 50);
+  }
 });
