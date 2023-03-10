@@ -1,4 +1,4 @@
-import questions from "./js/questions.js";
+import questions from "./questions.js";
 const question = document.querySelector(".text-question");
 const answersArray = document.querySelectorAll(".text-answer");
 const buttonsBox = document.querySelector(".buttons");
