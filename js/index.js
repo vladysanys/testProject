@@ -7,6 +7,10 @@ const counter = document.querySelector(".counter");
 const startButton = document.querySelector(".start-button");
 const startState = document.querySelector(".start-state");
 const firstSection = document.querySelector(".first-section");
+const cartBox = document.querySelector(".cart-box");
+const mainBox = document.querySelector(".box");
+const answers = document.querySelectorAll(".answer");
+const startQuestionText = document.querySelector(".start-question-text");
 let questionNumberArray = [];
 for (let i = 0; questionNumberArray.length < questions.length; i++) {
   let number = Math.floor(Math.random() * questions.length);
@@ -22,13 +26,23 @@ let value = false;
 let rate = Math.floor(100 / questions.length);
 const finnaly = () => {
   finnalyBox.classList.toggle("close");
+  firstSection.classList.add("close");
+  answers.forEach((item, i, array) => {
+    answers[i].classList.add("close");
+  });
+  // firstSection.classList.add('close')
   value = true;
 };
 startButton.addEventListener("click", (event) => {
   const { target } = event;
   if (target.className == "start-text") {
-    startState.classList.add("close");
     firstSection.classList.remove("close");
+    cartBox.classList.add("scale-down-ver-top");
+    startQuestionText.classList.add("animation-text");
+    setTimeout(() => {
+      cartBox.classList.add("close");
+      startState.classList.add("close");
+    }, 800);
   }
   question.textContent = questions[questionNumberArray[sum]].name;
   answersArray.forEach((item, index, array) => {
@@ -72,6 +86,6 @@ buttonsBox.addEventListener("click", (event) => {
       if (counterRate !== rate && trueAnwers !== 0) {
         counterRate++;
       }
-    }, 50);
+    }, 10);
   }
 });

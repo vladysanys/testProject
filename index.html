@@ -35,6 +35,9 @@
     </div>
     <div class="start-state">
       <div class="cart-box">
+        <p class="start-question-text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At animi distinctio non perspiciatis, veritatis enim culpa provident suscipit minima repudiandae quis in amet quisquam magni nesciunt, laboriosam deleniti repellendus quaerat!
+        </p>
         <button class="start-button">
           <h1 class="start-text">НАЧАТЬ</h1>
         </button>
@@ -62,9 +65,27 @@
       </div>
     </section>
     <div class="finaly-box close scale-up-hor-center">
+      <!-- <div class="circle-box">
+        <div class="circle-rate">
+        </div>
+        <div class="circle-danger"></div>
+      </div>
+      <div class="cirlce rotate-center"></div> -->
       <p class="counter">0</p>
     </div>
     <script type="module" src="js/index.js"></script>
     <script type="module" src="js/questions.js"></script>
+    <script type="text/javascript">
+    function disableSelection(target){
+        if (typeof target.onselectstart!="undefined")
+            target.onselectstart=function(){return false}
+        else if (typeof target.style.MozUserSelect!="undefined")
+            target.style.MozUserSelect="none"
+        else
+            target.onmousedown=function(){return false}
+        target.style.cursor = "default"
+    }
+    if (document.getElementById("noselect")) disableSelection(document.getElementById("noselect"));
+  </script>
   </body>
 </html>

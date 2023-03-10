@@ -2,16 +2,16 @@ const questions = [
   { // вопрос:
     name: `Ты гей?`,
     //варинаты ответы:
-    answer: [`1`, `2`, `3`, `4`],
+    answer: [`1`, `2`, `ckjdj`, `4`],
     //правильный ответ
-    trueAnswer: '3',
+    trueAnswer: 'ckjdj',
   },
   { // вопрос:
     name: `Ты гей?`,
     //варинаты ответы:
-    answer: [`1`, `2`, `3`, `4`],
+    answer: [`1`, `2`, `перечесение`, `4`],
     //правильный ответ
-    trueAnswer: '3',
+    trueAnswer: 'перечесение',
   },
 ];
 export default questions;
