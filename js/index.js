@@ -11,6 +11,9 @@ const cartBox = document.querySelector(".cart-box");
 const mainBox = document.querySelector(".box");
 const answers = document.querySelectorAll(".answer");
 const startQuestionText = document.querySelector(".start-question-text");
+const trueScore = document.querySelector(".true-answers_span")
+const falseScore = document.querySelector(".false-answers_span")
+const valutionScore = document.querySelector(".valution-text_span")
 let questionNumberArray = [];
 for (let i = 0; questionNumberArray.length < questions.length; i++) {
   let number = Math.floor(Math.random() * questions.length);
@@ -18,11 +21,11 @@ for (let i = 0; questionNumberArray.length < questions.length; i++) {
     questionNumberArray.push(number);
   }
 }
-console.log(questionNumberArray);
 let sum = -1;
 let trueAnwers = 0;
 let counterRate = 0;
 let value = false;
+let valution = 0
 let rate = Math.floor(100 / questions.length);
 const finnaly = () => {
   finnalyBox.classList.toggle("close");
@@ -31,6 +34,17 @@ const finnaly = () => {
     answers[i].classList.add("close");
   });
   value = true;
+  if(rate * trueAnwers < 50){
+    valutionScore.textContent = "2"
+  } else if (rate * trueAnwers >= 50 && rate * trueAnwers <= 70){
+    valutionScore.textContent = "3"
+  } else if (rate * trueAnwers >= 70 && rate * trueAnwers <= 90){
+    valutionScore.textContent = "4"
+  } else if (rate * trueAnwers >= 90 && rate * trueAnwers <= 100){
+    valutionScore.textContent = "5"
+  }
+  trueScore.textContent = `${trueAnwers}`
+  falseScore.textContent = `${questions.length - trueAnwers}`
 };
 function questionGen() {
   sum++;
