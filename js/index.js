@@ -18,7 +18,8 @@ for (let i = 0; questionNumberArray.length < questions.length; i++) {
     questionNumberArray.push(number);
   }
 }
-let sum = 0;
+console.log(questionNumberArray);
+let sum = -1;
 let trueAnwers = 0;
 let counterRate = 0;
 let value = false;
@@ -29,9 +30,17 @@ const finnaly = () => {
   answers.forEach((item, i, array) => {
     answers[i].classList.add("close");
   });
-  // firstSection.classList.add('close')
   value = true;
 };
+function questionGen() {
+  sum++;
+  question.textContent = questions[questionNumberArray[sum]].name;
+  answersArray.forEach((item, index, array) => {
+    // question.textContent = questions[questionNumberArray[index]].name
+    answersArray[index].textContent =
+      questions[questionNumberArray[sum]].answer[index];
+  });
+}
 startButton.addEventListener("click", (event) => {
   const { target } = event;
   if (target.className == "start-text") {
@@ -43,43 +52,25 @@ startButton.addEventListener("click", (event) => {
       startState.classList.add("close");
     }, 800);
   }
-  question.textContent = questions[questionNumberArray[sum]].name;
-  answersArray.forEach((item, index, array) => {
-    answersArray[index].textContent =
-      questions[questionNumberArray[sum]].answer[index];
-    if (target.textContent == questions[questionNumberArray[sum]].trueAnswer) {
-      trueAnwers++;
-      console.log(trueAnwers);
-    }
-  });
+  questionGen();
 });
 buttonsBox.addEventListener("click", (event) => {
   const { target } = event;
+  if (target.textContent == questions[questionNumberArray[sum]].trueAnswer) {
+    trueAnwers++;
+  } else {
+  }
   if (sum == questions.length - 1) {
     finnaly();
   } else {
-    sum++;
-    question.textContent = questions[questionNumberArray[sum]].name;
-    answersArray.forEach((item, index, array) => {
-      // question.textContent = questions[questionNumberArray[index]].name
-      answersArray[index].textContent =
-        questions[questionNumberArray[sum]].answer[index];
-    });
+    questionGen();
   }
-  if (target.textContent == questions[questionNumberArray[sum]].trueAnswer) {
-    trueAnwers++;
-    console.log(trueAnwers);
-    console.log(target);
-  } else {
-    console.log(false);
-    console.log(target.textContent);
-  }
-  // if(target.textName == questions[questionNumberArray[sum]]){
-  //   console.log(1)
-  // }
-
   if (value) {
-    rate = trueAnwers *= rate;
+    if(trueAnwers == questions.length){
+      rate = 100
+    } else {
+      rate = trueAnwers *= rate;
+    }
     setInterval(() => {
       counter.textContent = 0 + counterRate + "%";
       if (counterRate !== rate && trueAnwers !== 0) {
