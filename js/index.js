@@ -15,6 +15,7 @@ const trueScore = document.querySelector(".true-answers_span");
 const falseScore = document.querySelector(".false-answers_span");
 const valutionScore = document.querySelector(".valution-text_span");
 const boxInput = document.querySelector(".box-input");
+const circleRate = document.querySelector(".circle-rate")
 // const input = document.querySelector(".input");
 let questionNumberArray = [];
 for (let i = 0; questionNumberArray.length < questions.length; i++) {
@@ -62,7 +63,12 @@ const finnaly = () => {
         counterRate++;
       }
     }, 10);
+    let sumRate = rate * 1.8
+    setTimeout(() => {
+      circleRate.style.transform = `rotate(${sumRate}deg)`
+    }, 10);
   }
+  
 };
 function questionGen() {
   sum++;
@@ -70,14 +76,13 @@ function questionGen() {
     question.textContent = questions[questionNumberArray[sum]].name;
     input.className = "input";
     input.setAttribute("type", "text");
-    input.setAttribute("placeholder", "Введите ответ.");
+    input.setAttribute("placeholder", "Введите ответ");
     input.value = ""
     boxInput.append(input);
     console.log(input);
     buttonsBox.classList.add("close");
     boxInput.classList.remove("close");
     firstSection.style.height = "190px";
-    return input
   } else {
     buttonsBox.classList.remove("close");
     boxInput.classList.add("close");
@@ -117,14 +122,21 @@ buttonsBox.addEventListener("click", (event) => {
 });
 addEventListener("keydown", ({ keyCode }) => {
   let valueInput = input.value.toLowerCase().trim();
-  if (keyCode == 13) {
+  if (Boolean(valueInput) == true && keyCode == 13) {
+    console.log(valueInput)
     if (valueInput == questions[questionNumberArray[sum]].trueAnswer) {
       trueAnwers++;
     }
   }
-  if (keyCode == 13 && sum == questions.length - 1) {
+  if (Boolean(valueInput) == true && keyCode == 13 && sum == questions.length - 1) {
     finnaly();
-  } else if (keyCode == 13) {
+  } else if (keyCode == 13 && Boolean(valueInput) == true) {
     questionGen();
+  }
+  if(Boolean(valueInput) == false && keyCode == 13){
+    input.style.border = "2px solid #db5858"
+  }
+  if(Boolean(valueInput) == true){
+    input.style.border = "2px solid #9797bd"
   }
 });
