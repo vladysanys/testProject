@@ -15,7 +15,13 @@ const trueScore = document.querySelector(".true-answers_span");
 const falseScore = document.querySelector(".false-answers_span");
 const valutionScore = document.querySelector(".valution-text_span");
 const boxInput = document.querySelector(".box-input");
-const circleRate = document.querySelector(".circle-rate")
+const circleRate = document.querySelector(".circle-rate");
+const adminButton = document.querySelector(".admin-button");
+const adminBox = document.querySelector(".admin-box");
+const adminName = document.querySelector(".admin-name_input");
+const adminPassword = document.querySelector(".admin-password_input");
+const adminSignIn = document.querySelector(".sign-in");
+const adminHref = document.querySelector(".admin-href");
 // const input = document.querySelector(".input");
 let questionNumberArray = [];
 for (let i = 0; questionNumberArray.length < questions.length; i++) {
@@ -63,27 +69,29 @@ const finnaly = () => {
         counterRate++;
       }
     }, 10);
-    let sumRate = rate * 1.8
+    let sumRate = rate * 1.8;
     setTimeout(() => {
-      circleRate.style.transform = `rotate(${sumRate}deg)`
+      circleRate.style.transform = `rotate(${sumRate}deg)`;
     }, 10);
   }
-  
 };
+console.log(questionNumberArray);
 function questionGen() {
   sum++;
+  console.log(questions[questionNumberArray[sum]].trueAnswer);
   if (questions[questionNumberArray[sum]].answer[0] == undefined) {
     question.textContent = questions[questionNumberArray[sum]].name;
     input.className = "input";
     input.setAttribute("type", "text");
     input.setAttribute("placeholder", "Введите ответ");
-    input.value = ""
+    input.value = "";
     boxInput.append(input);
     console.log(input);
     buttonsBox.classList.add("close");
     boxInput.classList.remove("close");
     firstSection.style.height = "190px";
   } else {
+    inputSum = false;
     buttonsBox.classList.remove("close");
     boxInput.classList.add("close");
     question.textContent = questions[questionNumberArray[sum]].name;
@@ -121,22 +129,61 @@ buttonsBox.addEventListener("click", (event) => {
   }
 });
 addEventListener("keydown", ({ keyCode }) => {
+  let counterInput = false;
   let valueInput = input.value.toLowerCase().trim();
   if (Boolean(valueInput) == true && keyCode == 13) {
-    console.log(valueInput)
+    console.log(valueInput);
     if (valueInput == questions[questionNumberArray[sum]].trueAnswer) {
       trueAnwers++;
     }
   }
-  if (Boolean(valueInput) == true && keyCode == 13 && sum == questions.length - 1) {
+  // if (
+  //   questions[questionNumberArray[sum]].answer[0] == undefined &&
+  //   keyCode == 13
+  // ) {
+  //   counterInput = true;
+  // } else if (
+  //   questions[questionNumberArray[sum]].answer[0] !== undefined &&
+  //   keyCode == 13
+  // ) {
+  //   counterInput = false;
+  // }
+  if (
+    Boolean(valueInput) == true &&
+    keyCode == 13 &&
+    sum == questions.length - 1
+  ) {
     finnaly();
   } else if (keyCode == 13 && Boolean(valueInput) == true) {
     questionGen();
   }
-  if(Boolean(valueInput) == false && keyCode == 13){
-    input.style.border = "2px solid #db5858"
+  if (Boolean(valueInput) == false && keyCode == 13) {
+    input.style.border = "2px solid #db5858";
   }
-  if(Boolean(valueInput) == true){
-    input.style.border = "2px solid #9797bd"
+  if (Boolean(valueInput) == true) {
+    input.style.border = "2px solid #9797bd";
+  }
+});
+adminButton.addEventListener("click", (event) => {
+  let valueAdmin = true;
+  if (valueAdmin) {
+    startState.classList.toggle("close");
+    firstSection.classList.add("close");
+    adminBox.classList.toggle("close");
+  }
+});
+// adminHref.addEventListener("click",(event)=>{
+//   const {target}=event
+//   console.log(target)
+// if(adminName == "admin" && adminPassword == "oralcumshot"){
+//   adminHref.setAttribute("href","admin.html")
+//   console.log(1)
+// }
+// })
+adminSignIn.addEventListener("click", (event) => {
+  console.log(1);
+  if (adminName.value == "admin" && adminPassword.value == "oralcumshot") {
+    window.location.href = "http://127.0.0.1:5500/pages/admin.html";
+    console.log(1);
   }
 });
