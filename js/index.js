@@ -22,6 +22,8 @@ const adminName = document.querySelector(".admin-name_input");
 const adminPassword = document.querySelector(".admin-password_input");
 const adminSignIn = document.querySelector(".sign-in");
 const adminHref = document.querySelector(".admin-href");
+const adminPng = document.querySelector(".admin-png");
+const adminText = document.querySelector(".admin-text");
 // const input = document.querySelector(".input");
 let questionNumberArray = [];
 for (let i = 0; questionNumberArray.length < questions.length; i++) {
@@ -30,17 +32,23 @@ for (let i = 0; questionNumberArray.length < questions.length; i++) {
     questionNumberArray.push(number);
   }
 }
-// console.log(input)
 let sum = -1;
 let inputSum = false;
 let trueAnwers = 0;
 let counterRate = 0;
 let value = false;
-let valution = 0;
 let rate = Math.floor(100 / questions.length);
 let input = document.createElement("input");
+let adminBoxOpen = false;
+let quectionsBox = false;
+let startStateOpen = false;
+let finnalyBoxOpen = false;
 const finnaly = () => {
   value = true;
+  finnalyBoxOpen = true;
+  adminBoxOpen = false;
+  quectionsBox = false;
+  startStateOpen = false;
   finnalyBox.classList.toggle("close");
   firstSection.classList.add("close");
   answers.forEach((item, i, array) => {
@@ -75,10 +83,13 @@ const finnaly = () => {
     }, 10);
   }
 };
-console.log(questionNumberArray);
 function questionGen() {
   sum++;
   console.log(questions[questionNumberArray[sum]].trueAnswer);
+  finnalyBoxOpen = false;
+  adminBoxOpen = false;
+  quectionsBox = true;
+  startStateOpen = false;
   if (questions[questionNumberArray[sum]].answer[0] == undefined) {
     question.textContent = questions[questionNumberArray[sum]].name;
     input.className = "input";
@@ -91,12 +102,10 @@ function questionGen() {
     boxInput.classList.remove("close");
     firstSection.style.height = "190px";
   } else {
-    inputSum = false;
     buttonsBox.classList.remove("close");
     boxInput.classList.add("close");
     question.textContent = questions[questionNumberArray[sum]].name;
     answersArray.forEach((item, index, array) => {
-      // question.textContent = questions[questionNumberArray[index]].name
       answersArray[index].textContent =
         questions[questionNumberArray[sum]].answer[index];
     });
@@ -118,18 +127,19 @@ startButton.addEventListener("click", (event) => {
 });
 buttonsBox.addEventListener("click", (event) => {
   const { target } = event;
-  if (target.textContent == questions[questionNumberArray[sum]].trueAnswer) {
-    trueAnwers++;
-  } else {
-  }
-  if (sum == questions.length - 1) {
-    finnaly();
-  } else {
-    questionGen();
+  if (event.clientX > 100) {
+    if (target.textContent == questions[questionNumberArray[sum]].trueAnswer) {
+      trueAnwers++;
+    } else {
+    }
+    if (sum == questions.length - 1) {
+      finnaly();
+    } else {
+      questionGen();
+    }
   }
 });
-addEventListener("keydown", ({ keyCode }) => {
-  let counterInput = false;
+input.addEventListener("keydown", ({ keyCode }) => {
   let valueInput = input.value.toLowerCase().trim();
   if (Boolean(valueInput) == true && keyCode == 13) {
     console.log(valueInput);
@@ -137,17 +147,6 @@ addEventListener("keydown", ({ keyCode }) => {
       trueAnwers++;
     }
   }
-  // if (
-  //   questions[questionNumberArray[sum]].answer[0] == undefined &&
-  //   keyCode == 13
-  // ) {
-  //   counterInput = true;
-  // } else if (
-  //   questions[questionNumberArray[sum]].answer[0] !== undefined &&
-  //   keyCode == 13
-  // ) {
-  //   counterInput = false;
-  // }
   if (
     Boolean(valueInput) == true &&
     keyCode == 13 &&
@@ -165,25 +164,19 @@ addEventListener("keydown", ({ keyCode }) => {
   }
 });
 adminButton.addEventListener("click", (event) => {
-  let valueAdmin = true;
-  if (valueAdmin) {
-    startState.classList.toggle("close");
-    firstSection.classList.add("close");
-    adminBox.classList.toggle("close");
-  }
+  adminBox.classList.toggle("close");
+  adminPng.classList.toggle("close");
+  adminButton.classList.toggle("animation-admin");
+  adminText.classList.toggle("close");
 });
-// adminHref.addEventListener("click",(event)=>{
-//   const {target}=event
-//   console.log(target)
-// if(adminName == "admin" && adminPassword == "oralcumshot"){
-//   adminHref.setAttribute("href","admin.html")
-//   console.log(1)
-// }
-// })
+adminPng.addEventListener("click", (event) => {
+  adminBox.classList.toggle("close");
+  adminPng.classList.toggle("close");
+  adminButton.classList.toggle("animation-admin");
+  adminText.classList.toggle("close");
+});
 adminSignIn.addEventListener("click", (event) => {
-  console.log(1);
   if (adminName.value == "admin" && adminPassword.value == "oralcumshot") {
     window.location.href = "http://127.0.0.1:5500/pages/admin.html";
-    console.log(1);
   }
 });

@@ -418,8 +418,8 @@ body {
   position: absolute;
   width: 150px;
   height: 30px;
-  top: 911px;
-  left: 15px;
+  top: 95%;
+  left: 0;
   z-index: 5;
 }
 .admin-button {
@@ -438,16 +438,16 @@ body {
 }
 .admin-box {
   position: absolute;
-  top: 250px;
-  left: 710px;
-  width: 400px;
-  height: 300px;
+  top: 550px;
+  left: 2%;
+  width: 300px;
+  height: 200px;
   border-radius: 20px;
   z-index: 5;
   border: 1px solid #b3b3df;
   background-color: #b3b3df;
-  padding-top: 60px;
-  padding-left: 125px;
+  padding-top: 30px;
+  padding-left: 30px;
 }
 .admin-name {
   font-size: 25px;
@@ -505,4 +505,15 @@ body {
   text-align: center;
   margin-left: 47px;
   margin-top: 1px;
+}
+.animation-admin {
+  width: 30px;
+}
+.admin-png {
+  position: absolute;
+  top: 5px;
+  left: 55px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
