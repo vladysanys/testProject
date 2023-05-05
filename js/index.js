@@ -18,12 +18,12 @@ const boxInput = document.querySelector(".box-input");
 const circleRate = document.querySelector(".circle-rate");
 const adminButton = document.querySelector(".admin-button");
 const adminBox = document.querySelector(".admin-box");
-const adminName = document.querySelector(".admin-name_input");
-const adminPassword = document.querySelector(".admin-password_input");
+const adminNameInput = document.querySelector(".admin-name_input");
+const adminPasswordInput = document.querySelector(".admin-password_input");
 const adminSignIn = document.querySelector(".sign-in");
-const adminHref = document.querySelector(".admin-href");
-const adminPng = document.querySelector(".admin-png");
-const adminText = document.querySelector(".admin-text");
+// const adminHref = document.querySelector(".admin-href");
+// const adminPng = document.querySelector(".admin-png");
+// const adminText = document.querySelector(".admin-text");
 // const input = document.querySelector(".input");
 let questionNumberArray = [];
 for (let i = 0; questionNumberArray.length < questions.length; i++) {
@@ -33,7 +33,6 @@ for (let i = 0; questionNumberArray.length < questions.length; i++) {
   }
 }
 let sum = -1;
-let inputSum = false;
 let trueAnwers = 0;
 let counterRate = 0;
 let value = false;
@@ -165,18 +164,42 @@ input.addEventListener("keydown", ({ keyCode }) => {
 });
 adminButton.addEventListener("click", (event) => {
   adminBox.classList.toggle("close");
-  adminPng.classList.toggle("close");
-  adminButton.classList.toggle("animation-admin");
-  adminText.classList.toggle("close");
+  adminButton.classList.toggle("admin-button_dis");
 });
-adminPng.addEventListener("click", (event) => {
-  adminBox.classList.toggle("close");
-  adminPng.classList.toggle("close");
-  adminButton.classList.toggle("animation-admin");
-  adminText.classList.toggle("close");
+// adminPng.addEventListener("click", (event) => {
+//   adminBox.classList.toggle("close");
+//   adminPng.classList.toggle("close");
+//   adminButton.classList.toggle("animation-admin");
+//   adminText.classList.toggle("close");
+// });
+
+const headers = {
+  Authorization:
+    "Bearer AX_jASQgNWUwNGY4N2ItZDNhZS00OTAzLTkxOTQtNGYzNWRhZTMyM2Y0ZDY0MjBkZDdmMDBiNDRlOTlkMWVjNjM1MTkzM2Q2YWI=",
+};
+
+const request1 = fetch(
+  "https://giving-oriole-32739.kv.vercel-storage.com/get/adminLogin",
+  { headers }
+).then((response) => response.json());
+
+const request2 = fetch(
+  "https://giving-oriole-32739.kv.vercel-storage.com/get/adminPassword",
+  { headers }
+).then((response) => response.json());
+let adminLogin, adminPassword;
+Promise.all([request1, request2]).then((data) => {
+  // Создаем переменные из результатов запросов
+  adminLogin = data[0].result;
+  adminPassword = data[1].result;
+  return adminLogin;
 });
-adminSignIn.addEventListener("click", (event) => {
-  if (adminName.value == "admin" && adminPassword.value == "oralcumshot") {
-    window.location.href = "http://127.0.0.1:5500/pages/admin.html";
+window.onload = function () {};
+adminSignIn.onclick = () => {
+  if (adminLogin == adminNameInput.value && adminPassword == adminPasswordInput.value) {
+    let adminUrlWindow = window.location.href.slice(0, -14) + "admin.html"
+    window.location.replace(adminUrlWindow)
+  } else {
+    adminSignIn.classList.add("sign-in_err")
   }
-});
+};

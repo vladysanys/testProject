@@ -1,0 +1,82 @@
+body {
+  background-color: #4e54c8;
+  overflow: auto;
+}
+.main-box {
+  position: relative;
+  top: 0px;
+  width: 95%;
+  height: 150%;
+  margin-left: 80px;
+  margin-top: 20px;
+  overflow: auto;
+}
+.card-item {
+  position: relative;
+  width: 415px;
+  height: 340px;
+  border: 1px solid #9797bd;
+  background-color: #b3b3df;
+  border-radius: 20px;
+  box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.5);
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.question-box {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  width: 93%;
+  height: 100%;
+  /* border: 1px solid #62627c; */
+  border-radius: 10px;
+}
+.question-text {
+  font-size: 15px;
+  margin-top: 5.5px;
+}
+.answers-box {
+  position: absolute;
+  height: 195px;
+  width: 93%;
+  top: 68px;
+  left: 10px;
+}
+.answer-item {
+  position: relative;
+  height: 24%;
+  width: 100%;
+  border: 1px solid #62627c;
+  border-radius: 5px;
+  background-color: #8888ad;
+  margin-bottom: 2px;
+}
+.answer-text {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 5px;
+}
+.box-questions {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.text-name-answers {
+    position: absolute;
+    top: 16%;
+    left: 5px;
+    font-size: 12px;
+    color: #47475a;
+}
+.true-answers {
+    position: relative;
+    top: 82%;
+    left: 10px;
+    width: 93%;
+    height: 48.8px;
+    background-color: #88ad90;
+    border-radius: 5px;
+    border: 1px solid #62627c;
+}

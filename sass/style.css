@@ -517,3 +517,12 @@ body {
   height: 20px;
   cursor: pointer;
 }
+.admin-button_dis {
+  background-color: #9797bb;
+}
+.sign-in_err {
+  background-color: #d55b5b;
+}
+.sign-in_err:hover {
+  background-color: #b75a5a;
+}
