@@ -118,10 +118,12 @@ startButton.addEventListener("click", (event) => {
     firstSection.classList.remove("close");
     cartBox.classList.add("scale-down-ver-top");
     startQuestionText.classList.add("animation-text");
-    setTimeout(() => {
-      cartBox.classList.add("close");
-      startState.classList.add("close");
-    }, 800);
+    // setTimeout(() => {
+    //   cartBox.classList.add("close");
+    //   startState.classList.add("close");
+    // }, 800);
+    cartBox.classList.add("close");
+    startState.classList.add("close");
   }
 });
 buttonsBox.addEventListener("click", (event) => {
