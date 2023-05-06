@@ -84,6 +84,7 @@ const finnaly = () => {
 };
 function questionGen() {
   sum++;
+  console.log(questions)
   console.log(questions[questionNumberArray[sum]].trueAnswer);
   finnalyBoxOpen = false;
   adminBoxOpen = false;

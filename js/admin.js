@@ -41,7 +41,7 @@ const cardGen = (question, answer, trueAnswer) => {
   textTrueAnswers.textContent = "Правильный ответ:";
   card.append(deleteButton)
   deleteButton.classList.add("delete-button")
-  deleteButton.title = "Удалить"
+  deleteButton.title
   deleteButton.id = idButtons
   let i = -1;
   while (i < 3) {
@@ -71,8 +71,13 @@ const questionGenObject = (data, answer, trueAnswer) => {
   return value;
 };
 const answersGenArr = (one, two, tree, four) => {
-  let value = [one, two, tree, four];
-  return value;
+  if(two == ""){
+    let value = []
+    return value;
+  } else {
+    let value = [one, two, tree, four];
+    return value;
+  }
 };
 const questionGen = () => {
   const questionTextsArr = document.querySelectorAll(".question-text");
