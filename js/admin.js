@@ -1,10 +1,14 @@
 import questions from "./questions.js";
+import check from "./signIn.js";
 const boxQuestions = document.querySelector(".box-questions");
 const changeDataBtn = document.querySelector(".change-data-btn");
 const addCardButton = document.querySelector(".add-card");
-let idButtons = -1
+const exitButton = document.querySelector(".exit-button_img")
+const exitButtonHref = document.querySelector(".exit-button_a")
+let idButtons = -1;
+if(check){
 const cardGen = (question, answer, trueAnswer) => {
-  idButtons++
+  idButtons++;
   let card = document.createElement("div");
   let questionBox = document.createElement("div");
   let answersBox = document.createElement("div");
@@ -15,7 +19,7 @@ const cardGen = (question, answer, trueAnswer) => {
   let textTrueAnswers = document.createElement("p");
   let deleteButton = document.createElement("button");
   boxQuestions.append(card);
-  card.id = idButtons
+  card.id = idButtons;
   card.classList.add("card-item");
   card.append(questionBox);
   questionBox.classList.add("question-box");
@@ -39,10 +43,10 @@ const cardGen = (question, answer, trueAnswer) => {
   textTrueAnswers.classList.add("text-name-answers");
   textTrueAnswers.classList.add("text-true-answer");
   textTrueAnswers.textContent = "Правильный ответ:";
-  card.append(deleteButton)
-  deleteButton.classList.add("delete-button")
-  deleteButton.title
-  deleteButton.id = idButtons
+  card.append(deleteButton);
+  deleteButton.classList.add("delete-button");
+  deleteButton.title;
+  deleteButton.id = idButtons;
   let i = -1;
   while (i < 3) {
     let answerItem = document.createElement("div");
@@ -71,8 +75,8 @@ const questionGenObject = (data, answer, trueAnswer) => {
   return value;
 };
 const answersGenArr = (one, two, tree, four) => {
-  if(two == ""){
-    let value = []
+  if (two == "") {
+    let value = [];
     return value;
   } else {
     let value = [one, two, tree, four];
@@ -140,19 +144,39 @@ const sendingData = () => {
 changeDataBtn.onclick = () => {
   questionGen();
   sendingData();
-  newQuestions = []
+  newQuestions = [];
   setTimeout(() => {
-  window.location.reload();
+    window.location.reload();
   }, 100);
 };
 addCardButton.onclick = () => {
   cardGen("", "", "");
 };
-document.addEventListener("click",(e)=>{
-  const {target}=e
-  if(Boolean(target.id)&&target.classList.value == "delete-button"){
-    let deleteCard = document.getElementById(target.id)
-    console.log(deleteCard.id)
-    deleteCard.remove()
+document.addEventListener("click", (e) => {
+  const { target } = e;
+  if (Boolean(target.id) && target.classList.value == "delete-button") {
+    let deleteCard = document.getElementById(target.id);
+    console.log(deleteCard.id);
+    deleteCard.remove();
   }
-})
+});
+exitButton.onclick = ()=>{
+  checkingData()
+  let adminUrlWindow = window.location.href.slice(0, -10) + "main-main.html";
+  setTimeout(() => {
+    window.location.replace(adminUrlWindow);
+  }, 100);
+}
+const checkingData = () => {
+  fetch(`https://giving-oriole-32739.kv.vercel-storage.com/set/check`, {
+    headers: {
+      Authorization: `Bearer AX_jASQgNWUwNGY4N2ItZDNhZS00OTAzLTkxOTQtNGYzNWRhZTMyM2Y0ZDY0MjBkZDdmMDBiNDRlOTlkMWVjNjM1MTkzM2Q2YWI=`,
+    },
+    body: JSON.stringify(false),
+    method: "POST",
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+};} else {
+  alert("ошибка авторизации, идите нахуй")
+}

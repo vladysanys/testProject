@@ -1,4 +1,5 @@
 import questions from "./questions.js";
+import check from "./signIn.js";
 const question = document.querySelector(".text-question");
 const answersArray = document.querySelectorAll(".text-answer");
 const buttonsBox = document.querySelector(".buttons");
@@ -32,6 +33,7 @@ for (let i = 0; questionNumberArray.length < questions.length; i++) {
     questionNumberArray.push(number);
   }
 }
+console.log(check);
 let sum = -1;
 let trueAnwers = 0;
 let counterRate = 0;
@@ -84,7 +86,7 @@ const finnaly = () => {
 };
 function questionGen() {
   sum++;
-  console.log(questions)
+  console.log(questions);
   console.log(questions[questionNumberArray[sum]].trueAnswer);
   finnalyBoxOpen = false;
   adminBoxOpen = false;
@@ -199,10 +201,27 @@ Promise.all([request1, request2]).then((data) => {
 });
 window.onload = function () {};
 adminSignIn.onclick = () => {
-  if (adminLogin == adminNameInput.value && adminPassword == adminPasswordInput.value) {
-    let adminUrlWindow = window.location.href.slice(0, -14) + "admin.html"
-    window.location.replace(adminUrlWindow)
+  if (
+    adminLogin == adminNameInput.value &&
+    adminPassword == adminPasswordInput.value
+  ) {
+    sendingData();
+    let adminUrlWindow = window.location.href.slice(0, -14) + "admin.html";
+    setTimeout(() => {
+      window.location.replace(adminUrlWindow);
+    }, 1000);
   } else {
-    adminSignIn.classList.add("sign-in_err")
+    adminSignIn.classList.add("sign-in_err");
   }
+};
+const sendingData = () => {
+  fetch(`https://giving-oriole-32739.kv.vercel-storage.com/set/check`, {
+    headers: {
+      Authorization: `Bearer AX_jASQgNWUwNGY4N2ItZDNhZS00OTAzLTkxOTQtNGYzNWRhZTMyM2Y0ZDY0MjBkZDdmMDBiNDRlOTlkMWVjNjM1MTkzM2Q2YWI=`,
+    },
+    body: JSON.stringify(true),
+    method: "POST",
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
 };
