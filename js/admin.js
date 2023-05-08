@@ -160,7 +160,8 @@ if (check) {
     newQuestions = [];
     setTimeout(() => {
       window.location.reload();
-    }, 100);
+      alert("Данные успешно сохранены!")
+    }, 150);
   };
   addCardButton.onclick = () => {
     cardGen("", "", "");
