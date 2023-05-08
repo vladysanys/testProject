@@ -466,3 +466,6 @@ body {
 .sign-in_err:hover {
   background-color: #b75a5a;
 }
+.fa-arrow-left:before {
+  color: #1e3050;
+}

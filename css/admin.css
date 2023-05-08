@@ -138,3 +138,6 @@ body {
 .delete-button:hover {
   background-color: #914444;
 }
+.fa-solid {
+  color: #000000;
+}
