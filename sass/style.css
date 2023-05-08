@@ -454,6 +454,9 @@ body {
   height: 20px;
   cursor: pointer;
 }
+.sign-in {
+  background-color: #9696bb;
+}
 .admin-button_dis {
   background-color: #9797bb;
 }
@@ -462,7 +465,4 @@ body {
 }
 .sign-in_err:hover {
   background-color: #b75a5a;
-}
-.sign-in {
-  background-color: #9696bb;
 }
