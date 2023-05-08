@@ -5,6 +5,7 @@ const changeDataBtn = document.querySelector(".change-data-btn");
 const addCardButton = document.querySelector(".add-card");
 const exitButton = document.querySelector(".exit-button_img")
 const exitButtonHref = document.querySelector(".exit-button_a")
+const body = document.querySelector("body")
 let idButtons = -1;
 if(check){
 const cardGen = (question, answer, trueAnswer) => {
@@ -178,5 +179,10 @@ const checkingData = () => {
     .then((response) => response.json())
     .then((data) => console.log(data));
 };} else {
-  alert("ошибка авторизации, идите нахуй")
+  body.style.filter = "blur(3px)"
+  setTimeout(() => {
+    setInterval(() => {
+      alert("ошибка авторизации")
+    }, 10);
+  }, 100);
 }
