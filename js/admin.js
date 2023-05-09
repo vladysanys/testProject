@@ -12,6 +12,8 @@ const arrowExitButton = document.querySelector(".fa-solid");
 const toastTrigger = document.getElementById("liveToastBtn");
 const toastLiveExample = document.getElementById("liveToast");
 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 if (toastTrigger) {
   toastTrigger.addEventListener("click", () => {});
 }
@@ -230,10 +232,8 @@ if (check) {
 }
 const touchAlert = localStorage.getItem("touchAlert");
 if (Boolean(touchAlert)) {
-  console.log(1233);
   toastBootstrap.show();
   setTimeout(() => {
     localStorage.removeItem("touchAlert");
   }, 200);
 }
-console.log(touchAlert);
