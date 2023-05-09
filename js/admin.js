@@ -3,12 +3,18 @@ import check from "./signIn.js";
 const boxQuestions = document.querySelector(".box-questions");
 const changeDataBtn = document.querySelector(".change-data-btn");
 const addCardButton = document.querySelector(".add-card");
-const exitButton = document.querySelector(".fa-arrow-left");
+const exitButton = document.querySelector(".exit-button_a");
 const exitButtonHref = document.querySelector(".exit-button_a");
 const body = document.querySelector("body");
 let buttonsDelete = document.querySelectorAll(".delete-button");
 let iconsDelete = document.querySelectorAll(".anim");
-const arrowExitButton = document.querySelector(".fa-solid")
+const arrowExitButton = document.querySelector(".fa-solid");
+const toastTrigger = document.getElementById("liveToastBtn");
+const toastLiveExample = document.getElementById("liveToast");
+const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+if (toastTrigger) {
+  toastTrigger.addEventListener("click", () => {});
+}
 let idButtons = -1;
 if (check) {
   const cardGen = (question, answer, trueAnswer) => {
@@ -160,7 +166,7 @@ if (check) {
     newQuestions = [];
     setTimeout(() => {
       window.location.reload();
-      alert("Данные успешно сохранены!")
+      localStorage.setItem("touchAlert", "true");
     }, 150);
   };
   addCardButton.onclick = () => {
@@ -208,9 +214,9 @@ if (check) {
     const { target } = e;
     buttonsDelete.forEach((item, i) => {
       if (item.id == target.id && target.classList[0] !== "card-item") {
-        iconsDelete[i].classList.add("fa-bounce")
+        iconsDelete[i].classList.add("fa-bounce");
       } else {
-        iconsDelete[i].classList.remove("fa-bounce")
+        iconsDelete[i].classList.remove("fa-bounce");
       }
     });
   });
@@ -218,7 +224,16 @@ if (check) {
   body.style.filter = "blur(3px)";
   setTimeout(() => {
     setInterval(() => {
-      alert("ошибка авторизации");
+      alert("ошибка авторизации, нашелся взломщик, иди уроки делай");
     }, 10);
   }, 100);
 }
+const touchAlert = localStorage.getItem("touchAlert");
+if (Boolean(touchAlert)) {
+  console.log(1233);
+  toastBootstrap.show();
+  setTimeout(() => {
+    localStorage.removeItem("touchAlert");
+  }, 200);
+}
+console.log(touchAlert);

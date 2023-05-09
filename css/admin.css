@@ -149,3 +149,7 @@ body {
 .exit-button_box {
   position: fixed;
 }
+.toast-container {
+  /* transform: translate(0, -50%); */
+  left: 40%;
+}

@@ -30,12 +30,34 @@
           <i class="fa-solid fa-arrow-left fa-2xl"></i>
         </a>
       </button>
-      <button class="change-data-btn exit-button" title="Сохранить">
+      <button class="change-data-btn exit-button" title="Сохранить"  id="liveToastBtn">
         <i class="fa-floppy-disk fa-2xl fa-regular"></i>
       </button>
       <button class="exit-button add-card" title="Добавить">
         <i class="fa-solid fa-plus fa-2xl"></i>
       </button>
+    </div>
+    <div class="toast-container position-fixed top-0 p-3">
+      <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <!-- <img src="..." class="rounded me-2" alt="..." /> -->
+          <i class="fa-solid fa-user rounded me-2"></i>
+          <strong class="me-auto">Помощник</strong>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Закрыть"
+          ></button>
+        </div>
+        <div class="toast-body">Ваши данные успешно сохранены!</div>
+      </div>
     </div>
     <section class="main-box">
       <div class="box-questions">
@@ -78,6 +100,6 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
-    <script defer src="/_vercel/insights/script.js"></script>
+    <!-- <script defer src="/_vercel/insights/script.js"></script> -->
   </body>
 </html>
